@@ -22,7 +22,7 @@ class CargarState extends State<Cargar> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green,
-      appBar: AppBar(title: Text("Pantalla 2")),
+      //appBar: AppBar(title: Text("Pantalla 2")),
       body: Center(
         child: Text(
           "YOU DID IT",

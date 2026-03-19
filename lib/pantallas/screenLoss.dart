@@ -22,7 +22,7 @@ class LossState extends State<Loss> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.red,
-      appBar: AppBar(title: Text("Pantalla 3")),
+      //appBar: AppBar(title: Text("Pantalla 3")),
       body: Center(
         child: Text(
           "You Loss",
