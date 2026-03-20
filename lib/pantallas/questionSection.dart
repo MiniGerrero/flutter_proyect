@@ -1,5 +1,6 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'dart:async';
 import 'dart:math';
@@ -40,7 +41,7 @@ class StatePantallas extends State<Pantallas> {
     // Escuchar el giroscopio
     _gyroscopeSub = gyroscopeEventStream().listen((event) {
       setState(() {
-        if (!headMove && event.x < -1.5) {
+        if (!headMove && event.y < -1.5) {
           headMove = true;
           Navigator.push(
             context,
@@ -51,7 +52,7 @@ class StatePantallas extends State<Pantallas> {
               chooseAnimal();
             });
           });
-        } else if (!headMove && event.x > 1.5) {
+        } else if (!headMove && event.y > 1.5) {
           headMove = true;
           Navigator.push(
             context,
@@ -65,12 +66,20 @@ class StatePantallas extends State<Pantallas> {
         }
       });
     });
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
   }
 
   @override
   void dispose() {
     // Cancelar la suscripción
     _gyroscopeSub?.cancel();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     super.dispose();
   }
 
@@ -78,7 +87,11 @@ class StatePantallas extends State<Pantallas> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue,
-      appBar: AppBar(title: const Text("Testing Giroscopio, ")),
+      appBar: AppBar(
+        title: const Text("Testing Giroscopio, "),
+        elevation: 0,
+        backgroundColor: Colors.blue,
+      ),
       body: Center(
         child: Text(
           "Animal: $result",

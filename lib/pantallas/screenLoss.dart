@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Loss extends StatefulWidget {
   const Loss({super.key});
@@ -16,6 +17,10 @@ class LossState extends State<Loss> {
     Timer(const Duration(seconds: 2), () {
       Navigator.pop(context);
     });
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
   }
 
   @override
